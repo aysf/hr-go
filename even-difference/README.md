@@ -5,7 +5,7 @@
 - sum adjecent defferent variables
 
 
-## Question
+## Solution
 
 Even differences:
 
@@ -16,5 +16,7 @@ To have the sum of adjacent elements even, the difference between the first and 
     Find the first and last occurrence of the odd number in the array.
 
   The answer is the maximum difference between the first and last occurrence of the even number in the array and the first and last occurrence of the odd number in the array.
+
+## Question
 
 subsequence | sorted-subsequence | adjacent-elements | 
