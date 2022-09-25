@@ -3,5 +3,6 @@
 - Even Difference
 - Discount Tags
 - Maximum Score
+- Pairs
 
 

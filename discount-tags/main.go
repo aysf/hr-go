@@ -2,42 +2,36 @@ package main
 
 import "fmt"
 
-func getMaximumEvenSum(val []int32) int64 {
-	// Write your code here
-
-	// + sorted slices based on absolute value
-	// slices (2, -4, -2, -1, 3) become (-1, -2, 2, 3, -4)
-	sortedArray := groupSpc(val)
+func GetMaxEvenSum(val []int32) int64 {
 
 	var sum int32
-	for _, se := range sortedArray {
-		if se > 0 {
-			sum += se
+	for _, v := range val {
+		if v >= 0 {
+			sum += v
 		}
 	}
-
 	if isEven(sum) {
 		return int64(sum)
 	}
-	for _, m := range sortedArray {
-		if !isEven(abs(m)) {
-			return int64(sum - abs(sum))
-		}
-	}
-	return 0
+
+	return int64(sum - abs(getMinOdd(val)))
+
 }
 
-func groupSpc(val []int32) (res []int32) {
-	for _, v := range val {
+func getMinOdd(val []int32) int32 {
 
-		res = append(res, v)
-		if lr := len(res); lr > 1 {
-			if abs(res[lr-2]) > abs(res[lr-1]) {
-				res[lr-2], res[lr-1] = res[lr-1], res[lr-2]
-			}
+	var min int32
+	if val[0] != 0 {
+		min = val[0]
+	} else {
+		min = 3
+	}
+	for _, v := range val {
+		if abs(v) < abs(min) && !isEven(abs(v)) {
+			min = v
 		}
 	}
-	return
+	return min
 }
 
 func isEven(sum int32) bool {
@@ -51,10 +45,16 @@ func abs(v int32) int32 {
 	return v
 }
 
-var Case1 = []int32{5, -1, -2, -3, 8, 7}      // ans. 14
-var Case2 = []int32{7, 2, 3, 6, -5, 10, 1, 1} // ans. 22
+var Case0 = []int32{2, 3, 6, -5, 10, 1, 1} // ans. 22
+var Case1 = []int32{-1, -2, -3, 8, 7}      // ans. 14
+var Case2 = []int32{2, 3, 6, -5, 10, 1, 1} // ans. 22
+var Case3 = []int32{6, 3, 4, -1, 9, 17}    // ans. 38
+var Case4 = []int32{91}                    // ans. 38
 
 func main() {
-	fmt.Println(getMaximumEvenSum(Case1))
-	fmt.Println(getMaximumEvenSum(Case2))
+	fmt.Println(GetMaxEvenSum(Case0))
+	fmt.Println(GetMaxEvenSum(Case1))
+	fmt.Println(GetMaxEvenSum(Case2))
+	fmt.Println(GetMaxEvenSum(Case3))
+	fmt.Println(GetMaxEvenSum(Case4))
 }

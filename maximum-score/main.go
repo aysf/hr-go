@@ -17,8 +17,11 @@ func getMaximumScore(arr []int32, k int32) int64 {
 		sum += arr[last]
 
 		n := math.Ceil(float64(arr[last]) / third)
+
+		// + removed last element in slices
 		arr = arr[:last]
 
+		// + insert element in slices
 		arr = inserter(int32(n), arr)
 
 	}
